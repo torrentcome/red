@@ -5,23 +5,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import torrentcome.myapplication.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView textView;
+    private TextView textView1, textView2;
+    private LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
 
-        textView = (TextView) findViewById(R.id.textview);
+        linearLayout = (LinearLayout) findViewById(R.id.linear);
+        textView1 = (TextView) findViewById(R.id.textview1);
+        textView2 = (TextView) findViewById(R.id.textview2);
+
         set();
 
-        textView.setOnClickListener(new View.OnClickListener() {
+        linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 set();
@@ -31,8 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void set() {
         String networkClass = Connectivity.getNetworkClass(MainActivity.this);
-        String[] tab = networkClass.split(" ");
-        textView.setText(networkClass);
+        String[] tab = networkClass.split("=");
+        textView1.setText(tab[0]);
+        textView2.setText(tab[1]);
     }
 
     @Override
