@@ -1,6 +1,5 @@
 package torrentcome.myred;
 
-import android.content.Context;
 import android.telephony.TelephonyManager;
 
 /**
@@ -8,19 +7,16 @@ import android.telephony.TelephonyManager;
  * see the connectivity stuff
  */
 
-class Connectivity {
+class Network {
 
+
+    private Network() {
+    }
 
     /**
-     * Check if the connection is fast
-     *
-     * @param context  get the telephonyManager of the activity
-     * @return speed of the networks
+     * Check state of the connection
      */
-    static String getNetworkClass(Context context) {
-        TelephonyManager mTelephonyManager = (TelephonyManager)
-                context.getSystemService(Context.TELEPHONY_SERVICE);
-        int networkType = mTelephonyManager.getNetworkType();
+    static String getNetworkClass(int networkType) {
         switch (networkType) {
             case TelephonyManager.NETWORK_TYPE_GPRS:
                 return "NETWORK_TYPE_GPRS = 2G~ 100 kbps";
@@ -56,6 +52,5 @@ class Connectivity {
                 return "Unknown = Unknown";
         }
     }
-
 
 }
