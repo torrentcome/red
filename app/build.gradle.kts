@@ -40,7 +40,13 @@ dependencies {
     implementation(Libs.AndroidX.coreKtx)
     implementation(Libs.AndroidX.appCompat)
 
+    // google
     implementation(Libs.Google.material)
+
+    // koin
+    implementation(Libs.Koin.core)
+    implementation(Libs.Koin.android)
+    implementation(Libs.Koin.viewmodel)
 
     // test
     implementation(Libs.Test.junit)
