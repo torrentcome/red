@@ -10,11 +10,15 @@ object Libs {
     }
 
     object Google {
+
         const val material = "com.google.android.material:material:1.1.0"
+
+        private const val exoplayer_version = "2.11.3"
+        const val exoplayerCore = "com.google.android.exoplayer:exoplayer-core:$exoplayer_version"
     }
 
     object Koin {
-        const val koin_version = "2.1.5"
+        private const val koin_version = "2.1.5"
 
         const val core = "org.koin:koin-core:$koin_version"
         const val android = "org.koin:koin-android:$koin_version"

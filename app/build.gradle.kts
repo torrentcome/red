@@ -43,6 +43,9 @@ dependencies {
     // google
     implementation(Libs.Google.material)
 
+    // exoplayer
+    implementation(Libs.Google.exoplayerCore)
+
     // koin
     implementation(Libs.Koin.core)
     implementation(Libs.Koin.android)
