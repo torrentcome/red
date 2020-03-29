@@ -18,12 +18,13 @@ import torrentcome.myred.model.Mp3
 const val REQUEST_PERMISSION_READ_EXTERNAL_STORAGE_CODE = 7031
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.content_main)
 
         if (isReadPhoneStatePermissionGranted()) {
-            textview?.text = getAudio(this).map { it.name }.toString()
+            textview?.text = getAudio(this).map { it.title }.toString()
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(
@@ -56,9 +57,9 @@ class MainActivity : AppCompatActivity() {
                 val path = c.getString(c.getColumnIndex(MediaStore.Audio.Media.DATA))
                 val name = path.substring(path.lastIndexOf("/") + 1)
                 val mp3 = Mp3(
-                        songId = id.toInt(),
-                        name = name,
-                        downloadPath = path
+                        id = id.toInt(),
+                        title = name,
+                        path = path
                 )
                 list.add(mp3)
             }
@@ -83,7 +84,7 @@ class MainActivity : AppCompatActivity() {
         when (requestCode) {
             REQUEST_PERMISSION_READ_EXTERNAL_STORAGE_CODE -> if (grantResults.isNotEmpty()) {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    textview?.text = getAudio(this).map { it.name }.toString()
+                    textview?.text = getAudio(this).map { it.title }.toString()
                 } else {
                 }
             }

@@ -11,10 +11,6 @@ class AudioViewModel(
         private val getUseCase: GetUseCase
 ) : ViewModel() {
     private val playlist = MutableLiveData<List<Audio>>()
-
     fun saveData(audio: Audio) = saveUseCase.saveItem(audio)
-
-    fun getData() {
-        playlist.value = getUseCase.getItems()
-    }
+    fun getData() { playlist.value = getUseCase.getItems() }
 }
