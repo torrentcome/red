@@ -2,6 +2,8 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("android.extensions")
+    kotlin("kapt")
+
 }
 
 android {
@@ -24,6 +26,11 @@ android {
                 proguardFiles("proguard-rules.pro")
             }
         }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
@@ -51,6 +58,11 @@ dependencies {
     implementation(Libs.Koin.core)
     implementation(Libs.Koin.android)
     implementation(Libs.Koin.viewmodel)
+
+    // room
+    implementation(Libs.Room.runtime)
+    kapt(Libs.Room.compiler)
+    implementation(Libs.Room.ktx)
 
     // test
     implementation(Libs.Test.junit)

@@ -17,7 +17,6 @@ class Manager {
     private val audioNoisyIntentFilter = IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY)
     private var audioNoisyReceiverRegistered: Boolean = false
 
-
     private var exoPlayer: SimpleExoPlayer? = null
     private val eventListener = ExoPlayerEventListener()
 

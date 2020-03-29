@@ -5,7 +5,8 @@ import android.os.StrictMode
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
-import torrentcome.myred.di.appModule
+import torrentcome.myred.di.dbModule
+import torrentcome.myred.di.vmModule
 
 class App : Application() {
 
@@ -17,7 +18,7 @@ class App : Application() {
         startKoin {
             androidLogger()
             androidContext(this@App)
-            modules(listOf(appModule))
+            modules(listOf(dbModule, vmModule))
         }
     }
 

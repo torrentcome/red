@@ -18,11 +18,19 @@ object Libs {
     }
 
     object Koin {
-        private const val koin_version = "2.1.5"
+        private const val version = "2.1.5"
 
-        const val core = "org.koin:koin-core:$koin_version"
-        const val android = "org.koin:koin-android:$koin_version"
-        const val viewmodel = "org.koin:koin-android-viewmodel:$koin_version"
+        const val core = "org.koin:koin-core:$version"
+        const val android = "org.koin:koin-android:$version"
+        const val viewmodel = "org.koin:koin-android-viewmodel:$version"
+    }
+
+    object Room {
+        private const val version = "2.2.2"
+
+        const val runtime = "androidx.room:room-runtime:$version"
+        const val compiler = "androidx.room:room-compiler:$version"
+        const val ktx = "androidx.room:room-ktx:$version"
     }
 
     object Test{
