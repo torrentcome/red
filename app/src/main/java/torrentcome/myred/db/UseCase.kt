@@ -5,5 +5,5 @@ class SaveUseCase(private val audioRepo: AudioRepo) {
 }
 
 class GetUseCase(private val audioRepo: AudioRepo) {
-    fun getItem() : List<Audio>? = audioRepo.get()
+    fun getItems() : List<Audio>? = audioRepo.get()
 }
