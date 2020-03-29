@@ -32,9 +32,7 @@ val vmModule = module {
     single { createSaveUseCase(get()) }
     single { createGetUseCase(get()) }
 
-    viewModel {
-        AudioViewModel()
-    }
+    viewModel { AudioViewModel(get(), get()) }
 }
 
 fun createSaveUseCase(audioRepo: AudioRepo): SaveUseCase = SaveUseCase(audioRepo)
