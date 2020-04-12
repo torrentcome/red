@@ -14,19 +14,19 @@ import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
-import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.activity_audio.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import torrentcome.myred.R
-import torrentcome.myred.db.Audio
+import torrentcome.myred.db.AudioEntity
 
 // permission
 const val REQUEST_PERMISSION_READ_EXTERNAL_STORAGE_CODE = 7031
 
-class MainActivity : AppCompatActivity() {
+class ListAudioActivity : AppCompatActivity() {
     private val viewModel: AudioViewModel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.content_main)
+        setContentView(R.layout.activity_audio)
 
         if (isReadPhoneStatePermissionGranted()) {
             logic()
@@ -38,9 +38,7 @@ class MainActivity : AppCompatActivity() {
                 )
             }
         }
-        val adapter = PlaylistAdapter { selection ->
-            Log.i("list", "" + selection.path)
-        }
+        val adapter = AudioListAdapter { selection -> Log.i("list", "" + selection.path) }
         recycler_view.adapter = adapter
 
         viewModel.playlist.observe(this, Observer { list ->
@@ -60,8 +58,8 @@ class MainActivity : AppCompatActivity() {
         viewModel.getData()
     }
 
-    private fun searchPhoneAudio(context: Context): List<Audio> {
-        val list: MutableList<Audio> = ArrayList()
+    private fun searchPhoneAudio(context: Context): List<AudioEntity> {
+        val list: MutableList<AudioEntity> = ArrayList()
         val uri: Uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
         val projection = arrayOf(
                 MediaStore.Audio.Media._ID,
@@ -82,7 +80,7 @@ class MainActivity : AppCompatActivity() {
                 val id = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media._ID))
                 val path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA))
                 val name = path.substring(path.lastIndexOf("/") + 1)
-                val mp3 = Audio(
+                val mp3 = AudioEntity(
                         id = id.toLong(),
                         title = name,
                         path = path

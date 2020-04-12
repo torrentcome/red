@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-class Audio(
+class AudioEntity(
         @PrimaryKey var id: Long = -1L,
         var title: String = "",
         var path: String = "") {
@@ -16,7 +16,7 @@ class Audio(
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as Audio
+        other as AudioEntity
         if (id != other.id) return false
         if (title != other.title) return false
         if (path != other.path) return false
