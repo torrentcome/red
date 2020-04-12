@@ -24,7 +24,6 @@ fun createDb(context: Context): Db =
 
 fun createDao(db: Db) = db.audioDao
 fun createRepo(audioDao: AudioDao): AudioRepo = AudioRepoImpl(audioDao)
-
 /**
  *
  * view model & use case
@@ -34,7 +33,6 @@ val vmModule = module {
 
     single { createSaveUseCase(get()) }
     single { createGetUseCase(get()) }
-
 }
 
 fun createSaveUseCase(audioRepo: AudioRepo): SaveUseCase = SaveUseCase(audioRepo)

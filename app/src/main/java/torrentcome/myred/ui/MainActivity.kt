@@ -24,7 +24,6 @@ const val REQUEST_PERMISSION_READ_EXTERNAL_STORAGE_CODE = 7031
 
 class MainActivity : AppCompatActivity() {
     private val viewModel: AudioViewModel by viewModel()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.content_main)
@@ -39,7 +38,6 @@ class MainActivity : AppCompatActivity() {
                 )
             }
         }
-
         val adapter = PlaylistAdapter { selection ->
             Log.i("list", "" + selection.path)
         }
@@ -56,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun logic(){
+    private fun logic() {
         val searchPhoneAudio = searchPhoneAudio(this)
         viewModel.saveData(searchPhoneAudio)
         viewModel.getData()
@@ -114,7 +112,6 @@ class MainActivity : AppCompatActivity() {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     logic()
                 } else {
-
                 }
             }
         }

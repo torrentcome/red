@@ -7,8 +7,8 @@ object Libs {
         private const val coroutines_version = "1.3.5"
         const val couroutineCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
         const val couroutineAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
-
     }
+
     object AndroidX {
         const val appCompat = "androidx.appcompat:appcompat:1.1.0"
         const val coreKtx = "androidx.core:core-ktx:1.2.0"
