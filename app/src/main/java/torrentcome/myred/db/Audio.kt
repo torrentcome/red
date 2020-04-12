@@ -7,13 +7,11 @@ import androidx.room.PrimaryKey
 class Audio(
         @PrimaryKey var id: Long = -1L,
         var title: String = "",
-        var path: String = ""){
-
+        var path: String = "") {
     var isPlay = false
     var totalDuration: Long = 0
     var currentPosition: Long = 0
     var playingPercent = 0
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -29,7 +27,7 @@ class Audio(
     override fun hashCode(): Int {
         var result = id
         result = 31 * result + (title.hashCode())
-        result = 31 * result + (path.hashCode() )
+        result = 31 * result + (path.hashCode())
         return result.toInt()
     }
 

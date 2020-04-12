@@ -21,18 +21,20 @@ fun createDb(context: Context): Db =
         Room.databaseBuilder(context, Db::class.java, Db.DB_NAME)
                 .fallbackToDestructiveMigration()
                 .build()
+
 fun createDao(db: Db) = db.audioDao
-fun createRepo(audioDao: AudioDao): AudioRepoImpl = AudioRepoImpl(audioDao)
+fun createRepo(audioDao: AudioDao): AudioRepo = AudioRepoImpl(audioDao)
 
 /**
  *
  * view model & use case
  */
 val vmModule = module {
+    viewModel { AudioViewModel(get(), get()) }
+
     single { createSaveUseCase(get()) }
     single { createGetUseCase(get()) }
 
-    viewModel { AudioViewModel(get(), get()) }
 }
 
 fun createSaveUseCase(audioRepo: AudioRepo): SaveUseCase = SaveUseCase(audioRepo)

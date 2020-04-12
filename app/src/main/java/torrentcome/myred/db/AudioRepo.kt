@@ -1,15 +1,23 @@
 package torrentcome.myred.db
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import kotlin.coroutines.CoroutineContext
+
 // domain
 interface AudioRepo {
-    fun save(audio: Audio): Long
-    fun get(): List<Audio>?
-    fun delete(audio: Audio)
+    suspend fun save(audio: List<Audio>): List<Long>
+    suspend fun get(): List<Audio>?
+    suspend fun delete(audio: Audio)
 }
 
 // impl
-class AudioRepoImpl(private val audioDao: AudioDao) : AudioRepo {
-    override fun save(audio: Audio): Long = audioDao.insert(audio)
-    override fun get(): List<Audio>? = audioDao.get()
-    override fun delete(audio: Audio) = audioDao.delete(audio)
+class AudioRepoImpl(private val audioDao: AudioDao) : AudioRepo, CoroutineScope {
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main
+
+    override suspend fun save(audio: List<Audio>): List<Long> = withContext(Dispatchers.IO) { audioDao.insert(audio) }
+    override suspend fun get(): List<Audio>? = withContext(Dispatchers.IO) { audioDao.get() }
+    override suspend fun delete(audio: Audio) = withContext(Dispatchers.IO) { audioDao.delete(audio) }
 }

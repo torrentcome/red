@@ -4,9 +4,8 @@ import androidx.room.*
 
 @Dao
 interface AudioDao {
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(audio: Audio): Long
+    fun insert(audio: List<Audio>): List<Long>
 
     @Query("SELECT * FROM Audio")
     fun get(): MutableList<Audio>

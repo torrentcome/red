@@ -3,7 +3,6 @@ plugins {
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
-
 }
 
 android {
@@ -43,10 +42,13 @@ dependencies {
 
     // kotlin
     implementation(Libs.Kotlin.stdlib)
+    implementation(Libs.Kotlinx.couroutineCore)
+    implementation(Libs.Kotlinx.couroutineAndroid)
 
     // androidx
     implementation(Libs.AndroidX.coreKtx)
     implementation(Libs.AndroidX.appCompat)
+    implementation(Libs.AndroidX.constraintLayout)
 
     // google
     implementation(Libs.Google.material)
@@ -58,11 +60,12 @@ dependencies {
     implementation(Libs.Koin.core)
     implementation(Libs.Koin.android)
     implementation(Libs.Koin.viewmodel)
+    implementation(Libs.Koin.architecture)
 
     // room
+    implementation(Libs.Room.ktx)
     implementation(Libs.Room.runtime)
     kapt(Libs.Room.compiler)
-    implementation(Libs.Room.ktx)
 
     // test
     implementation(Libs.Test.junit)

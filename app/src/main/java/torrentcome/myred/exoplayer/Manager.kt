@@ -10,16 +10,14 @@ import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 
 const val TAG = "exoplayer"
-class Manager {
-    private var audioManager: AudioManager? = null
 
+class Manager(private val context: Context) {
+    private var audioManager: AudioManager? = null
     // Broadcast intent, a hint for applications that audio is about to become 'noisy' due to a change in audio outputs
     private val audioNoisyIntentFilter = IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY)
     private var audioNoisyReceiverRegistered: Boolean = false
-
     private var exoPlayer: SimpleExoPlayer? = null
     private val eventListener = ExoPlayerEventListener()
-
     private val mAudioNoisyReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             if (AudioManager.ACTION_AUDIO_BECOMING_NOISY == intent.action) {
@@ -34,6 +32,10 @@ class Manager {
         }
     }
 
-    inner class ExoPlayerEventListener : Player.EventListener {
+    init {
+        audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        // Create the Wifi lock (this does not acquire the lock, this just creates it)
     }
+
+    inner class ExoPlayerEventListener : Player.EventListener
 }

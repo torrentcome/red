@@ -8,23 +8,29 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
+import android.view.View
 import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.content_main.*
+import org.koin.android.viewmodel.ext.android.viewModel
 import torrentcome.myred.R
-import torrentcome.myred.model.Mp3
+import torrentcome.myred.db.Audio
 
+// permission
 const val REQUEST_PERMISSION_READ_EXTERNAL_STORAGE_CODE = 7031
 
 class MainActivity : AppCompatActivity() {
+    private val viewModel: AudioViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.content_main)
 
         if (isReadPhoneStatePermissionGranted()) {
-            textview?.text = getAudio(this).map { it.title }.toString()
+            logic()
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(
@@ -33,10 +39,31 @@ class MainActivity : AppCompatActivity() {
                 )
             }
         }
+
+        val adapter = PlaylistAdapter { selection ->
+            Log.i("list", "" + selection.path)
+        }
+        recycler_view.adapter = adapter
+
+        viewModel.playlist.observe(this, Observer { list ->
+            if (list.isEmpty()) {
+                text.visibility = View.VISIBLE
+                text.text = getString(R.string.no_data)
+            } else {
+                text.visibility = View.GONE
+                adapter.list = list
+            }
+        })
     }
 
-    private fun getAudio(context: Context): List<Mp3> {
-        val list: MutableList<Mp3> = ArrayList()
+    private fun logic(){
+        val searchPhoneAudio = searchPhoneAudio(this)
+        viewModel.saveData(searchPhoneAudio)
+        viewModel.getData()
+    }
+
+    private fun searchPhoneAudio(context: Context): List<Audio> {
+        val list: MutableList<Audio> = ArrayList()
         val uri: Uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
         val projection = arrayOf(
                 MediaStore.Audio.Media._ID,
@@ -44,26 +71,27 @@ class MainActivity : AppCompatActivity() {
                 MediaStore.Audio.Media.DURATION
         )
         val selection = MediaStore.Audio.Media.IS_MUSIC + " != 0"
-        val c: Cursor? = context.contentResolver.query(
+        val cursor: Cursor? = context.contentResolver.query(
                 uri,
                 projection,
                 selection,
                 null,
-                null)
+                null
+        )
 
-        if (c != null) {
-            while (c.moveToNext()) {
-                val id = c.getString(c.getColumnIndex(MediaStore.Audio.Media._ID))
-                val path = c.getString(c.getColumnIndex(MediaStore.Audio.Media.DATA))
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                val id = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media._ID))
+                val path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA))
                 val name = path.substring(path.lastIndexOf("/") + 1)
-                val mp3 = Mp3(
-                        id = id.toInt(),
+                val mp3 = Audio(
+                        id = id.toLong(),
                         title = name,
                         path = path
                 )
                 list.add(mp3)
             }
-            c.close()
+            cursor.close()
         }
         return list
     }
@@ -84,11 +112,11 @@ class MainActivity : AppCompatActivity() {
         when (requestCode) {
             REQUEST_PERMISSION_READ_EXTERNAL_STORAGE_CODE -> if (grantResults.isNotEmpty()) {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    textview?.text = getAudio(this).map { it.title }.toString()
+                    logic()
                 } else {
+
                 }
             }
         }
     }
 }
-

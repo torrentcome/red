@@ -1,9 +1,9 @@
 package torrentcome.myred.db
 
 class SaveUseCase(private val audioRepo: AudioRepo) {
-    fun saveItem(audio : Audio) : Long = audioRepo.save(audio)
+    suspend fun saveItem(audio: List<Audio>): List<Long> = audioRepo.save(audio)
 }
 
 class GetUseCase(private val audioRepo: AudioRepo) {
-    fun getItems() : List<Audio>? = audioRepo.get()
+     suspend fun getItems(): List<Audio>? = audioRepo.get()
 }

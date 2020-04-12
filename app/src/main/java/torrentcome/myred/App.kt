@@ -9,7 +9,6 @@ import torrentcome.myred.di.dbModule
 import torrentcome.myred.di.vmModule
 
 class App : Application() {
-
     override fun onCreate() {
         super.onCreate()
 
