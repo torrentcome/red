@@ -1,4 +1,4 @@
-package torrentcome.myred.db
+package torrentcome.myred.data.db
 
 import androidx.room.*
 

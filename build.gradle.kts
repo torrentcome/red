@@ -6,9 +6,10 @@ buildscript {
         google()
         jcenter()
         mavenCentral()
+        maven(url ="https://jitpack.io")
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:4.1.0-alpha03")
+        classpath("com.android.tools.build:gradle:4.2.0-alpha01")
         classpath(kotlin("gradle-plugin", version = ProjectProperties.Kotlin.version))
 
     }
@@ -19,6 +20,7 @@ allprojects {
         google()
         jcenter()
         mavenCentral()
+        maven(url ="https://jitpack.io")
     }
 }
 

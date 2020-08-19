@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_audio.view.*
 import torrentcome.myred.R
-import torrentcome.myred.db.AudioEntity
+import torrentcome.myred.data.db.AudioEntity
 import kotlin.properties.Delegates
 
 class AudioListAdapter(private val listener: (AudioEntity) -> Unit) : RecyclerView.Adapter<AudioListAdapter.AudioViewHolder>() {

@@ -39,27 +39,32 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+
     // kotlin
     implementation(Libs.Kotlin.stdlib)
     implementation(Libs.Kotlinx.couroutineCore)
     implementation(Libs.Kotlinx.couroutineAndroid)
+
     // androidx
     implementation(Libs.AndroidX.coreKtx)
     implementation(Libs.AndroidX.appCompat)
     implementation(Libs.AndroidX.constraintLayout)
+    implementation(Libs.AndroidX.media)
+
     // google
     implementation(Libs.Google.material)
-    // exoplayer
-    implementation(Libs.Google.exoplayerCore)
+
     // koin
     implementation(Libs.Koin.core)
     implementation(Libs.Koin.android)
     implementation(Libs.Koin.viewmodel)
     implementation(Libs.Koin.architecture)
+
     // room
     implementation(Libs.Room.ktx)
     implementation(Libs.Room.runtime)
     kapt(Libs.Room.compiler)
+
     // test
     implementation(Libs.Test.junit)
     implementation(Libs.Test.testng)

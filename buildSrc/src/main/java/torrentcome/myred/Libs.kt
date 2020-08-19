@@ -10,15 +10,17 @@ object Libs {
     }
 
     object AndroidX {
-        const val appCompat = "androidx.appcompat:appcompat:1.1.0"
         const val coreKtx = "androidx.core:core-ktx:1.2.0"
+        const val appCompat = "androidx.appcompat:appcompat:1.1.0"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
+        const val media = "androidx.media:media:1.2.0-alpha01"
     }
 
     object Google {
         const val material = "com.google.android.material:material:1.1.0"
-        private const val exoplayer_version = "2.11.3"
+        private const val exoplayer_version = "2.11.4"
         const val exoplayerCore = "com.google.android.exoplayer:exoplayer-core:$exoplayer_version"
+        const val exoplayerMediasession = "com.google.android.exoplayer:extension-mediasession:$exoplayer_version"
     }
 
     object Koin {
@@ -39,5 +41,11 @@ object Libs {
     object Test {
         const val junit = "junit:junit:4.12"
         const val testng = "org.testng:testng:6.9.6"
+    }
+
+    object YoutubeDL {
+        const val library = "com.github.yausername.youtubedl-android:library:0.9.+"
+        const val ffmpeg = "com.github.yausername.youtubedl-android:ffmpeg:0.9.+"
+
     }
 }

@@ -1,4 +1,4 @@
-package torrentcome.myred.db
+package torrentcome.myred.data.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -33,9 +33,5 @@ class AudioEntity(
 
     override fun toString(): String {
         return "Mp3(id=$id, title=$title, path=$path, isPlay=$isPlay, totalDuration=$totalDuration, currentPosition=$currentPosition, playingPercent=$playingPercent)"
-    }
-
-    private fun calculatePercentPlay(): Int {
-        return if (currentPosition == 0L || totalDuration == 0L) 0 else (currentPosition * 100 / totalDuration).toInt()
     }
 }
