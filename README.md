@@ -26,8 +26,8 @@ The structure of this project with 3 layers:
 ```kotlin
         // kotlin
         implementation(Libs.Kotlin.stdlib)
-        implementation(Libs.Kotlinx.couroutineCore)
-        implementation(Libs.Kotlinx.couroutineAndroid)
+        implementation(Libs.Kotlinx.coroutineCore)
+        implementation(Libs.Kotlinx.coroutineAndroid)
 
         // androidx
         implementation(Libs.AndroidX.coreKtx)

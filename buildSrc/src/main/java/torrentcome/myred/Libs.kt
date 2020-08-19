@@ -5,8 +5,8 @@ object Libs {
 
     object Kotlinx {
         private const val coroutines_version = "1.3.5"
-        const val couroutineCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
-        const val couroutineAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+        const val coroutineCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+        const val coroutineAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     }
 
     object AndroidX {
@@ -18,9 +18,6 @@ object Libs {
 
     object Google {
         const val material = "com.google.android.material:material:1.1.0"
-        private const val exoplayer_version = "2.11.4"
-        const val exoplayerCore = "com.google.android.exoplayer:exoplayer-core:$exoplayer_version"
-        const val exoplayerMediasession = "com.google.android.exoplayer:extension-mediasession:$exoplayer_version"
     }
 
     object Koin {
@@ -41,11 +38,5 @@ object Libs {
     object Test {
         const val junit = "junit:junit:4.12"
         const val testng = "org.testng:testng:6.9.6"
-    }
-
-    object YoutubeDL {
-        const val library = "com.github.yausername.youtubedl-android:library:0.9.+"
-        const val ffmpeg = "com.github.yausername.youtubedl-android:ffmpeg:0.9.+"
-
     }
 }

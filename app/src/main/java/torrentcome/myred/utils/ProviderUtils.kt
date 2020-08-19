@@ -3,11 +3,14 @@ package torrentcome.myred.utils
 import android.content.Context
 import android.database.Cursor
 import android.net.Uri
+import android.os.Build
 import android.provider.MediaStore
+import androidx.annotation.RequiresApi
 import torrentcome.myred.data.db.AudioEntity
 
 object ProviderUtils {
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     fun searchPhoneAudio(context: Context): List<AudioEntity> {
         val list: MutableList<AudioEntity> = ArrayList()
         val uri: Uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
