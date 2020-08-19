@@ -1,15 +1,14 @@
-package torrentcome.myred;
+package torrentcome.myred
 
-import org.testng.annotations.AfterTest;
-
-import static org.junit.Assert.assertEquals;
+import org.junit.Assert
+import org.testng.annotations.AfterTest
 
 /**
  * To work on unit tests, switch the Test Artifact in the Build Variants view.
  */
-public class ExampleUnitTest {
+class ExampleUnitTest {
     @AfterTest
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+    fun addition_isCorrect() {
+        Assert.assertEquals(4, 2 + 2.toLong())
     }
 }
